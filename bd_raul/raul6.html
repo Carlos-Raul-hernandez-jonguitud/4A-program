@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raul</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-light navbarBg">
+        <div class="container">
+            <a class="navbar-brand in" href="/bd_raul/index.html" style="color: white;">Inicio</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="font-menu nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 1</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="hola dropdown-item" href="/bd_raul/raul1.php">Página 1</a>
+                            <a class="dropdown-item" href="/bd_raul/raul2.php">Página 2</a>
+                            <a class="dropdown-item" href="/bd_raul/raul3.php">Página 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 2</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/bd_raul/raul4.php">Página 4</a>
+                            <a class="dropdown-item" href="/bd_raul/raul5.php">Página 5</a>
+                            <a class="dropdown-item" href="/bd_raul/raul6.html">Página 6</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 3</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/bd_raul/raul7.html">Página 7</a>
+                            <a class="dropdown-item" href="/bd_raul/raul8.html">Página 8</a>
+                            <a class="dropdown-item" href="/bd_raul/raul9.html">Página 9</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<style>
+    body {
+        background-image: url(pokebg.jpg );
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    button {
+        width: 310px;
+        height: 300px;
+        background-color: rgba(179, 236, 255, 0.35);
+        border-color: rgba(91, 175, 255, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        top: 360px;
+        right: 41%;
+    }
+    button:hover {
+        background-color: rgba(0, 179, 255, 0.4);
+        transform: scale(1.6);
+    }
+    .placeholder {
+        width: 210px;
+        height: 50px;
+        position: absolute;
+        border-radius: 12px;
+        background-color: rgba(173, 216, 230, 0.4);
+        text-align: center;
+        font-size: 24px;
+        color: #0e3c5d;
+        left: 44%;
+    }
+    .pokeimg1 {
+        position: absolute;
+        color: rgba(13, 72, 109, 0.85);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 22px;
+        mix-blend-mode: multiply;
+    }
+    .pokeImg {
+        width: 500px;
+    }
+</style>
+
+    <input type="text" placeholder="Vaporeon" id="pokeName" 
+    class="placeholder">
+    <img src="pokeball.jpg" alt="Pokeball" id="pokeImg" 
+    class="pokeImg">
+    <div id="pokename" class="pokeimg1" style="top: 430px; left: 1180px;">Nombre del Pokemon:</div>
+    <div id="pokeHe" class="pokeimg1" style="top: 470px; left: 1170px;">Altura del Pokemon:</div>
+    <div id="pokeWe" class="pokeimg1" style="top: 510px; left: 1160px;">Peso del Pokemon:</div>
+    <div id="poketype" class="pokeimg1" style="top: 550px; left: 1160px;">Tipo del Pokemon:</div>
+    <div id="pokeitem" class="pokeimg1" style="top: 590px; left: 1150px;">Item del Pokemon:</div>
+    <div id="pokemove1" class="pokeimg1" style="top: 630px; left: 1140px;">Movimiento del Pokemon:</div>
+    <div id="pokemove2" class="pokeimg1" style="top: 670px; left: 1130px;">Movimiento del Pokemon:</div>
+    <div id="pokemove3" class="pokeimg1" style="top: 710px; left: 1110px;">Movimiento del Pokemon:</div>
+    <div id="pokemove4" class="pokeimg1" style="top: 750px; left: 1100px;">Movimiento del Pokemon:</div>
+    <div id="pokeid" class="pokeimg1" style="left: 140px; top: 550px; font-size: 30px;"></div>
+    <div id="pokeorder" class="pokeimg1" style="left: 300px; top: 550px; font-size: 30px;"></div>
+
+    <button onclick="fetchPokemon()" class="button"></button>
+
+    <script>
+        const fetchPokemon = () => {
+            const pokeNameInput = document.getElementById("pokeName");
+            let pokeName = pokeNameInput.value;
+            pokeName = pokeName.toLowerCase();
+            const url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+            fetch(url).then((res) => {
+                if(res.status != "200"){
+                    console.log(res);
+                }else{
+                    return res.json();
+                }
+            }
+        ).then((data) => {
+            if(data){
+                console.log(data);
+                let pokeImg = data.sprites.front_default;
+                pokeImage(pokeImg);
+                let name = document.getElementById('pokename');
+                name.innerHTML = `Nombre: ${data.forms[0].name}`;
+                let element1 = document.getElementById('pokeHe');
+                element1.innerHTML = `Altura: ${data.height}`;
+                let element2 = document.getElementById('pokeWe');
+                element2.innerHTML = `Peso: ${data.weight}`;
+                let element3 = document.getElementById('pokeorder');
+                element3.innerHTML = `Order: #${data.order}`;
+                let element4 = document.getElementById('pokeid');
+                element4.innerHTML = `Id: #${data.id}`;
+                let element5 = document.getElementById('pokeitem');
+                element5.innerHTML = `Ability: ${data.abilities[0].ability.name}`;
+                let element6 = document.getElementById('poketype');
+                element6.innerHTML = `Type: ${data.types[0].type.name}`;
+                let element7 = document.getElementById('pokemove1');
+                element7.innerHTML = `Move 1: ${data.moves[0].move.name}`;
+                let element8 = document.getElementById('pokemove2');
+                element8.innerHTML = `Move 2: ${data.moves[1].move.name}`;
+                let element9 = document.getElementById('pokemove3');
+                element9.innerHTML = `Move 3: ${data.moves[2].move.name}`;
+                let element10 = document.getElementById('pokemove4');
+                element10.innerHTML = `Move 4: ${data.moves[3].move.name}`;
+            }
+        });
+        const pokeImage = (url) => {
+        const pokePhoto = document.getElementById("pokeImg");
+        pokePhoto.src = url;
+        }};
+    </script>
+</body>
+</html>
