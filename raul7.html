@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API's Raul</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbarBg">
+        <div class="container">
+            <a class="navbar-brand in" href="/bd_raul/index.html" style="color: white;">Inicio</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="font-menu nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 1</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="hola dropdown-item" href="/bd_raul/raul1.php">Página 1</a>
+                            <a class="dropdown-item" href="/bd_raul/raul2.php">Página 2</a>
+                            <a class="dropdown-item" href="/bd_raul/raul3.php">Página 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 2</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/bd_raul/raul4.php">Página 4</a>
+                            <a class="dropdown-item" href="/bd_raul/raul5.php">Página 5</a>
+                            <a class="dropdown-item" href="/bd_raul/raul6.html">Página 6</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color: white;"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unidad 3</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/bd_raul/raul7.html">Página 7</a>
+                            <a class="dropdown-item" href="/bd_raul/raul8.html">Página 8</a>
+                            <a class="dropdown-item" href="/bd_raul/raul9.html">Página 9</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-color: #c6e6ff;
+            --secondary-color: #7dbff2;
+            --terceary-color: #346b9c;
+        }
+        body {
+            background-color: var(--primary-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+        header {
+            padding: 16px;
+            display: flex;
+            justify-content: flex-end;
+            background-color: var(--terceary-color);
+        }
+        .search {
+            background-color: rgb(rgba(9, 255, 0, 0.713));
+            border: 5px solid var(--primary-color);
+            border-radius: 50px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 15px;
+            padding: 10px 16px;
+            color: var(--terceary-color);
+        }
+        .search::placeholder {
+            color: var(--terceary-color);
+        }
+        .search:focus {
+            outline: none;
+            background-color: var(--primary-color);
+        }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .movie {
+            width: 300px;
+            margin: 15px;
+            background-color: var(--secondary-color);
+            box-shadow: 0 5px 5px black;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .movie img {
+            width: 100%;
+        }
+        .movie-info {
+            color: var(--primary-color);
+            display: flex;
+            align-items: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            padding: 8px 15px 15px;
+            letter-spacing: 8px;
+        }
+        .movie-info h3 {
+            margin-top: 0;
+        }
+        .movie-info span {
+            background-color: var(--primary-color);
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .movie-info span.blue {
+            color: blue;
+        }
+        .movie-info span.orange {
+            color: orange;
+        }
+        .movie-info span.red {
+            color: red;
+        }
+        .overview {
+            background-color: white;
+            padding: 32px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            max-height: 100%;
+            transform: translateY(101%);
+            overflow-y: auto;
+            transition: transform 1s ease-in;
+        }
+        .movie:hover .overview {
+            transform: translateY(0);
+        }
+    </style>
+
+
+    <header>
+        <img src="logom.jpg" alt="api" style="width: auto" height="50px">
+        <form id="form">
+            <input type="text" id="search" class="search" placeholder="Busca tu pelicula">
+        </form>
+    </header>
+    <main id="main"></main>
+    
+    <script>
+        const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
+        const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+        const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=';
+        const main = document.getElementById('main');
+        const form = document.getElementById('form');
+        const search = document.getElementById('search');
+        getMovies(API_URL)
+        async function getMovies(url){
+            const res = await fetch(url);
+            const data = await res.json();
+            showMovies(data.results);
+        }
+        function showMovies(movies){
+            main.innerHTML = '';
+            movies.forEach((movie) => {
+                const {title, poster_path, vote_average, overview} = movie;
+                const movieElements = document.createElement('div');
+                movieElements.classList.add('movie');
+                movieElements.innerHTML = `
+                <img src = "${IMG_PATH + poster_path}" alt="${title}">
+                <div class="movie-info">
+                    <h3>${title}</h3>
+                    <span class = "${getClassByRate(vote_average)}">
+                        ${vote_average}</span>
+                        </div>
+                        <div class = "overview">
+                            <h3>Overview</h3>
+                            ${overview}
+                        </div>`;
+                    main.appendChild(movieElements);
+            });}
+            function getClassByRate(vote){
+                if(vote >= 8){
+                    return 'blue';
+                }else if (vote >= 5){
+                    return 'orange';
+                }else{
+                    return 'red';
+                }}
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault()
+                    const searchTerm = search.value;
+                    if(searchTerm && searchTerm !== ''){
+                        getMovies(SEARCH_API + searchTerm)
+                        search.value='';
+                    }else{window.location.reload();}
+                })
+    </script>
+</body>
+</html>
